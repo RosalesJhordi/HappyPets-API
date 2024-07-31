@@ -14,7 +14,7 @@ class AuthController extends Controller
 
         //Validacion de datos
 
-        $validacion = Validator::makeValidacion($request,[
+        $validacion = Validator::make($request->all(),[
             'dni'       => 'required|min:8|max:8|unique:users,dni',
             'telefono'  => 'required|unique:users,telefono',
             'rol'       => 'required',
@@ -38,13 +38,13 @@ class AuthController extends Controller
 
         //Crear token PAT para el usuario
 
-        $accessTKN = $usuario->createTokenn('token')->plainTextToken;
+        $accessTKN = $usuario->createToken('token')->plainTextToken;
 
         //Obtener token
 
         $user = User::where('dni',$request->dni)->first();
 
-        $token = User::find($user->id)->tokens()->where('name','token')->pluck('token')->first();
+        $token = $usuario->tokens()->where('name', 'token')->pluck('token')->first();
 
         //Retornar respuesta json
 
@@ -78,9 +78,9 @@ class AuthController extends Controller
         }
 
         // Buscar usuario y obtener el token PAT
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('dni', $request->dni)->first();
         $userId = $user->id;
-        $token = User::find($userId)->tokens()->where('name', 'auth_token')->pluck('token')->first();
+        $token = User::find($userId)->tokens()->where('name', 'token')->pluck('token')->first();
 
         //Retornar los datos de usuario y el token de acceso
         return response()->json([
