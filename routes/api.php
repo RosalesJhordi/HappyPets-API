@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ServiciosController;
 use App\Http\Middleware\TokenVerify;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ Route::get('/user', function (Request $request) {
 Route::post('Registro',[AuthController::class,'registrar']);
 Route::post('Autenticar',[AuthController::class,'autenticar']);
 
+//Rutas protegidas
 Route::middleware([TokenVerify::class])->group(function () {
     Route::get('/Users', function(){
         $users = User::all();
@@ -21,5 +23,7 @@ Route::middleware([TokenVerify::class])->group(function () {
             'usuarios' => $users
         ]);
     });
-    // Otras rutas protegidas
+
+    Route::post('NewServicio',[ServiciosController::class,'store']);
+    
 });
