@@ -15,8 +15,6 @@ class Citas extends Model
         'id_cliente',
         'id_servicio',
         'nm_mascota',
-        'tipo_servicio',
-        'duracion',
         'estado',
         'observaciones',
     ];

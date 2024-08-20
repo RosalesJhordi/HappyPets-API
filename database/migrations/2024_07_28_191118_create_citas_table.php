@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('id_cliente');
             $table->string('id_servicio');
             $table->string('nm_mascota');
-            $table->string('tipo_servicio');
-            $table->string('duracion');
             $table->string('estado');
             $table->string('observaciones');
             $table->timestamps();
