@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CitasController;
+use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Middleware\TokenVerify;
 use App\Models\User;
@@ -14,6 +16,8 @@ Route::get('/user', function (Request $request) {
 //Rutas para los controladores
 Route::post('Registro',[AuthController::class,'registrar']);
 Route::post('Autenticar',[AuthController::class,'autenticar']);
+Route::get('Servicios',[ServiciosController::class,'all']);
+Route::get('Productos',[ProductosController::class,'all']);
 
 //Rutas protegidas
 Route::middleware([TokenVerify::class])->group(function () {
@@ -23,7 +27,9 @@ Route::middleware([TokenVerify::class])->group(function () {
             'usuarios' => $users
         ]);
     });
+    Route::get('Citas',[CitasController::class,'all']);
 
     Route::post('NewServicio',[ServiciosController::class,'store']);
+    Route::post('NewProducto',[ProductosController::class,'store']);
     
 });

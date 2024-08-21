@@ -45,4 +45,11 @@ class ProductosController extends Controller
 
         return response()->json(['servicio' => $servicio], 201);
     }
+
+    //funcion para mostrar todos los servicios
+    public function all(){
+        $productos = Productos::all();
+        return response()->json(['productos' => $productos], 200);
+    }
+
 }

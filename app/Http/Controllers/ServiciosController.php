@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Citas;
 use App\Models\Servicios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Testing\Constraints\CountInDatabase;
 
 class ServiciosController extends Controller
 {
@@ -42,4 +44,9 @@ class ServiciosController extends Controller
         return response()->json(['servicio' => $servicio], 201);
     }
 
+    //funcion para mostrar todos los servicios
+    public function all(){
+        $servicios = Servicios::all();
+        return response()->json(['servicios' => $servicios], 200);
+    }
 }

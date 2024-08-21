@@ -36,4 +36,16 @@ class CitasController extends Controller
         //Retornar la cita creada
         return response()->json(['cita' => $cita], 201);
     }
+
+    //funcion para mostrar todas las citas
+    public function all(){
+        $citas = Citas::all();
+        return response()->json(['citas' => $citas], 200);
+    }
+
+    //funcion para obtener todas las Citas de un usuario
+    public function citas(Request $request){
+        $citas = Citas::where('id_cliente', $request->id_cliente)->get();
+        return response()->json(['citas' => $citas], 200);
+    }
 }
