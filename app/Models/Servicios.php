@@ -13,6 +13,7 @@ class Servicios extends Model
         'nm_servicio',
         'duracion_aprox',
         'descripcion',
+        'precio',
         'imagen'
     ];
 }

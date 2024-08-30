@@ -19,6 +19,7 @@ class ServiciosController extends Controller
             'nm_servicio' => 'required|unique:servicios,nm_servicio',
             'duracion_aprox' => 'required',
             'descripcion' => 'required',
+            'precio' => 'required',
             'imagen' => 'required',
         ]);
 
@@ -38,6 +39,7 @@ class ServiciosController extends Controller
             'nm_servicio' => $request->nm_servicio,
             'duracion_aprox' => $request->duracion_aprox,
             'descripcion' => $request->descripcion,
+            'precio' => $request->precio,
             'imagen' => $nombreImagen,
         ]);
 

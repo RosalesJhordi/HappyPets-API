@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nm_servicio');
             $table->string('duracion_aprox');
             $table->string('descripcion');
+            $table->string('precio');
             $table->string('imagen');
             $table->timestamps();
         });
