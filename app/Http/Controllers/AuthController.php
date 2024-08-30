@@ -17,7 +17,6 @@ class AuthController extends Controller
         $validacion = Validator::make($request->all(),[
             'dni'       => 'required|min:8|max:8|unique:users,dni',
             'telefono'  => 'required|unique:users,telefono',
-            'rol'       => 'required',
             'password'  => 'required|min:6|confirmed',
         ]);
 
@@ -32,7 +31,6 @@ class AuthController extends Controller
         $usuario = User::create([
             'dni'       => $request->dni,
             'telefono'  => $request->telefono,
-            'rol'       => $request->rol,
             'password'  => Hash::make($request->password),
         ]);
 
@@ -49,8 +47,7 @@ class AuthController extends Controller
         //Retornar respuesta json
 
         return response()->json([
-            'user' => $user,
-            'token' => $token,
+            'mensaje' => 'Registro exitoso'
         ]);
     }
 
@@ -84,8 +81,7 @@ class AuthController extends Controller
 
         //Retornar los datos de usuario y el token de acceso
         return response()->json([
-            'user' => $user,
-            "token" => $token
+            'mensaje' => 'Autenticado'
         ], 201);
     }
 }

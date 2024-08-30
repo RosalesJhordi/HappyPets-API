@@ -28,13 +28,29 @@ class CitasController extends Controller
         $cita = Citas::create([
             'fecha' => $request->fecha,
             'hora' => $request->hora,
+            'id_cliente' => $request->id_cliente,
+            'id_servicio' => $request->id_servicio,
             'nm_mascota' => $request->nm_mascota,
             'estado' => $request->estado,
             'observaciones' => $request->observaciones,
         ]);
 
         //Retornar la cita creada
-        return response()->json(['cita' => $cita], 201);
+        return response()->json([
+            'message' => 'Cita reservada correctamente',
+        ]);
+    }
+
+    //funcion para eliminar citas
+    public function eliminar(Request $request){
+
+        //elimiar cita
+        $cita = Citas::find($request->id_cita);
+        $cita->delete();
+
+        return response()->json([
+           'message' => 'Cita cancelada correctamente'
+        ]);
     }
 
     //funcion para mostrar todas las citas

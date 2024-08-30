@@ -27,7 +27,8 @@ Route::middleware([TokenVerify::class])->group(function () {
             'usuarios' => $users
         ]);
     });
-    Route::get('Citas',[CitasController::class,'all']);
+    Route::get('Citas',[CitasController::class,'all']); //Admin
+    Route::get('Cita',[CitasController::class,'citas']);
 
     Route::post('NewServicio',[ServiciosController::class,'store']);
     Route::post('NewProducto',[ProductosController::class,'store']);

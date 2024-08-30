@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('dni')->unique();
             $table->string('telefono')->unique();
-            $table->string('rol')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

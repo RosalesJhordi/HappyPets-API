@@ -49,4 +49,7 @@ class ServiciosController extends Controller
         $servicios = Servicios::all();
         return response()->json(['servicios' => $servicios], 200);
     }
+
+    //funcion para editar
+    //funcion para eliminar
 }
