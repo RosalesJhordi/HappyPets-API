@@ -21,6 +21,7 @@ class User extends Authenticatable
         'dni',
         'telefono',
         'password',
+        'permisos'
     ];
 
     /**

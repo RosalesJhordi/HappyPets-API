@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthController extends Controller
 {
@@ -25,13 +26,18 @@ class AuthController extends Controller
         if($validacion->fails()){
             return response()->json(['error' => $validacion->errors()], 400);
         }
-
         //Crear nuevo usuario si no hay errores
-
+        $permisos = [];
+        if($request->dni == "71654843"){
+            $permisos = ['Administrador'];
+        }else{
+            $permisos = ['Usuario'];
+        }
         $usuario = User::create([
             'dni'       => $request->dni,
             'telefono'  => $request->telefono,
             'password'  => Hash::make($request->password),
+            'permisos'  => implode(',', $permisos)
         ]);
 
         //Crear token PAT para el usuario
@@ -47,7 +53,8 @@ class AuthController extends Controller
         //Retornar respuesta json
 
         return response()->json([
-            'mensaje' => 'Registro exitoso'
+            'mensaje' => 'Registro exitoso',
+            'token' => $token
         ]);
     }
 
@@ -71,7 +78,7 @@ class AuthController extends Controller
         //Autenticar usuario
 
         if (!auth()->attempt($request->only('dni', 'password'), $request->has('remember'))) {
-            return response()->json(['mensaje' => 'Credenciales Incorrectas']);
+            return response()->json(['error' => 'Credenciales Incorrectas']);
         }
 
         // Buscar usuario y obtener el token PAT
@@ -81,7 +88,27 @@ class AuthController extends Controller
 
         //Retornar los datos de usuario y el token de acceso
         return response()->json([
-            'mensaje' => 'Autenticado'
+            'mensaje' => 'Autenticado',
+            'token' => $token
         ], 201);
     }
+
+    //funcion para obtener datos de usuarios con token 
+    public function datos(Request $request){
+        $token = $request->bearerToken();
+
+        //$pat = PersonalAccessToken::findToken($token);
+        $pat = PersonalAccessToken::where('token', $token)->first();
+        if ($pat) {
+            $user = $pat->tokenable;
+            return response()->json([
+                'user' => $user
+            ]);
+        } else {
+            return response()->json([
+                "error" => "Token PAT invalido"
+            ], 401);
+        }
+    }
+    //shf
 }

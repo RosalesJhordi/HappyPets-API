@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('dni')->unique();
             $table->string('telefono')->unique();
             $table->string('password');
+            $table->string('permisos')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

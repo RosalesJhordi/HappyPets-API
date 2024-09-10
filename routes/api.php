@@ -63,4 +63,7 @@ Route::middleware([TokenVerify::class])->group(function () {
 
     // EndPoint para mostrar todos los servicios
     Route::get('AllServicio',[ServiciosController::class,'all']);
+
+    // EndPoint para obtener datos de usuario con token
+    Route::get('DatosUsuario',[AuthController::class,'datos']);
 });
