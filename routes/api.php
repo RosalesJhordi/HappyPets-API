@@ -22,6 +22,9 @@ Route::get('MostrarServicios',[ServiciosController::class,'all']);
 // EndPoint para mostrar productos
 Route::get('MostrarProductos',[ProductosController::class,'all']);
 
+//Filtrar servicio por categoria 
+Route::post('FiltrarServicio',[ServiciosController::class,'filtro']);
+
 //Rutas protegidas
 Route::middleware([TokenVerify::class])->group(function () {
 

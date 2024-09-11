@@ -20,6 +20,7 @@ class ServiciosController extends Controller
             'duracion_aprox' => 'required',
             'descripcion' => 'required',
             'precio' => 'required',
+            'categoria' => 'required',
             'imagen' => 'required',
         ]);
 
@@ -40,6 +41,7 @@ class ServiciosController extends Controller
             'duracion_aprox' => $request->duracion_aprox,
             'descripcion' => $request->descripcion,
             'precio' => $request->precio,
+            'categoria' => $request->categoria,
             'imagen' => $nombreImagen,
         ]);
 
@@ -54,4 +56,9 @@ class ServiciosController extends Controller
 
     //funcion para editar
     //funcion para eliminar
+    //funcion para filtrar por categoria
+    public function filtro(Request $request){
+        $servicios = Servicios::where('categoria', $request->categoria)->get();
+        return response()->json(['servicios' => $servicios], 200);
+    }
 }

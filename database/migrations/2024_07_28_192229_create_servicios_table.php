@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('duracion_aprox');
             $table->string('descripcion');
             $table->string('precio');
+            $table->string('categoria');
             $table->string('imagen');
             $table->timestamps();
         });

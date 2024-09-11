@@ -14,6 +14,7 @@ class Servicios extends Model
         'duracion_aprox',
         'descripcion',
         'precio',
+        'categoria',
         'imagen'
     ];
 }
