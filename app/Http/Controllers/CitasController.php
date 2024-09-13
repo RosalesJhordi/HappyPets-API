@@ -15,8 +15,6 @@ class CitasController extends Controller
             'fecha' => 'required|date',
             'hora' => 'required',
             'nm_mascota' => 'required',
-            'estado' => 'required',
-            'observaciones' => 'required',
         ]);
 
         //si hay algun error al validar los datos
@@ -31,8 +29,6 @@ class CitasController extends Controller
             'id_cliente' => $request->id_cliente,
             'id_servicio' => $request->id_servicio,
             'nm_mascota' => $request->nm_mascota,
-            'estado' => $request->estado,
-            'observaciones' => $request->observaciones,
         ]);
 
         //Retornar la cita creada
