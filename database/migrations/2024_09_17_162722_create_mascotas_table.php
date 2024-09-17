@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('productos', function (Blueprint $table) {
+        Schema::create('mascotas', function (Blueprint $table) {
             $table->id();
-            $table->string('nmproducto');
-            $table->string('descripcion');
-            $table->string('categoria');
-            $table->string('precio');
-            $table->string('descuento')->nullable();
-            $table->string('stock');
-            $table->string('imagen');
+            $table->string("nombre");
+            $table->string("especie");
+            $table->string("raza");
+            $table->string("edad");
+            $table->string("id_usuario");
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('productos');
+        Schema::dropIfExists('mascotas');
     }
 };

@@ -12,7 +12,7 @@ class CitasController extends Controller
     public function store(Request $request){
         //Validar datos
         $validacion = Validator::make($request->all(),[
-            'fecha' => 'required|date',
+            'fecha' => 'required',
             'hora' => 'required',
             'nm_mascota' => 'required',
         ]);
@@ -30,11 +30,11 @@ class CitasController extends Controller
             'id_servicio' => $request->id_servicio,
             'nm_mascota' => $request->nm_mascota,
         ]);
-
+        
         //Retornar la cita creada
         return response()->json([
             'message' => 'Cita reservada correctamente',
-        ]);
+        ],200);
     }
 
     //funcion para eliminar citas
