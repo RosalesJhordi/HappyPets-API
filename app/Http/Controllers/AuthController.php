@@ -110,4 +110,11 @@ class AuthController extends Controller
             ], 401);
         }
     }
+
+    //funcion para mostrar usuarios
+
+    public function all(){
+        $usuarios = User::all();
+        return response()->json(['usuarios' => $usuarios], 200);
+    }
 }

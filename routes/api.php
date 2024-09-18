@@ -26,6 +26,8 @@ Route::get('MostrarProductos',[ProductosController::class,'all']);
 //Filtrar servicio por categoria 
 Route::post('FiltrarServicio',[ServiciosController::class,'filtro']);
 
+Route::get('ShowServicio/{id}',[ServiciosController::class,'show']);
+
 //Rutas protegidas
 Route::middleware([TokenVerify::class])->group(function () {
 
@@ -73,5 +75,5 @@ Route::middleware([TokenVerify::class])->group(function () {
 
     Route::get('Notificaciones/{id}',CitaNotificaciones::class);
 
-    Route::get('ShowServicio/{id}',[ServiciosController::class,'show']);
+    Route::get('Ususarios',[AuthController::class,'all']);
 });
