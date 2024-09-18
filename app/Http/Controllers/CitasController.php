@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Citas;
+use App\Models\User;
+use App\Notifications\NuevaCita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -30,7 +32,9 @@ class CitasController extends Controller
             'id_servicio' => $request->id_servicio,
             'nm_mascota' => $request->nm_mascota,
         ]);
-        
+
+        $user = User::where('permisos', "Administrador")->first();
+        $user->notify(new NuevaCita($request->id_cliente,$request->hora,$request->fecha));
         //Retornar la cita creada
         return response()->json([
             'message' => 'Cita reservada correctamente',

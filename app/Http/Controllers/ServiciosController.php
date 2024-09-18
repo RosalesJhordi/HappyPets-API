@@ -61,4 +61,15 @@ class ServiciosController extends Controller
         $servicios = Servicios::where('categoria', $request->categoria)->get();
         return response()->json(['servicios' => $servicios], 200);
     }
+
+    //funcion para mostrar un solo servicio por id
+    public function show($id){
+        $servicio = Servicios::find($id);
+
+        if($servicio){
+            return response()->json(['servicio' => $servicio], 200);
+        } else {
+            return response()->json(['error' => 'Servicio no encontrado'], 404);
+        }
+    }
 }

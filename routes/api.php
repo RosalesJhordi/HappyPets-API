@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CitaNotificaciones;
 use App\Http\Controllers\CitasController;
 use App\Http\Controllers\ComprasController;
 use App\Http\Controllers\ProductosController;
@@ -69,4 +70,8 @@ Route::middleware([TokenVerify::class])->group(function () {
 
     // EndPoint para obtener datos de usuario con token
     Route::get('DatosUsuario',[AuthController::class,'datos']);
+
+    Route::get('Notificaciones/{id}',CitaNotificaciones::class);
+
+    Route::get('ShowServicio/{id}',[ServiciosController::class,'show']);
 });
